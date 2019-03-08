@@ -1,0 +1,37 @@
+@mixin responsive($min: 300px) {
+  @media screen and (min-width: $min) {
+    @content;
+  }
+}
+
+@mixin small {
+  @include responsive(600px) {
+    @content;
+  }
+}
+
+@mixin medium {
+  @include responsive(768px) {
+    @content;
+  }
+}
+
+@mixin large {
+  @include responsive(992px) {
+    @content;
+  }
+}
+
+@mixin xLarge {
+  @include responsive(1200px) {
+    @content;
+  }
+}
+
+@mixin flex($d: row, $ai: center, $jc: center, $wrap: wrap) {
+  display: flex;
+  flex-direction: $d;
+  align-items: $ai;
+  justify-content: $jc;
+  flex-wrap: $wrap;
+}

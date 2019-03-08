@@ -1,0 +1,317 @@
+@import './partials/mixins';
+
+$navbar-height: 70px;
+$blue: #2a6d84;
+$background: #f2f2f2;
+$background-light: #f9f9f9;
+
+*,
+::after,
+::before {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  font-family: 'Noto Sans', sans-serif;
+}
+
+body {
+  line-height: 1.618;
+  font-size: 1rem;
+  margin: 0;
+  padding: 0;
+  font-family: 'Noto Sans', sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+li,
+a,
+button {
+  margin: 0;
+  font-family: 'Noto Sans', sans-serif;
+}
+
+button,
+a {
+  background: none;
+  border: none;
+  display: block;
+  height: 36px;
+  min-width: 88px;
+  line-height: 36px;
+  text-transform: capitalize;
+  font-size: 14px;
+  text-decoration: none;
+  padding: 0 1rem;
+  cursor: pointer;
+}
+
+.is-uppercase {
+  text-transform: uppercase;
+}
+
+.is-font-normal {
+  font-size: 1rem;
+}
+
+.container {
+  width: calc(100% - 2rem);
+  margin: 0 auto;
+  height: 100%;
+
+  @include large {
+    width: 90%;
+  }
+  @include xLarge {
+    width: 88%;
+  }
+}
+
+.Page {
+  min-height: 1235px;
+  background: $background;
+}
+
+.Screen {
+  background: white;
+  margin: 60px auto 0;
+  width: 77%;
+  max-width: 1110px;
+  height: 760px;
+}
+
+.Screen__Header {
+  padding: 30px 30px 0;
+  background: $background-light;
+  height: 125px;
+  @include flex(column, flex-start, space-between);
+  h2 {
+    font-size: 24px;
+    text-transform: capitalize;
+  }
+}
+
+.Screen__Focus-List {
+  @include flex(row, center, flex-start);
+}
+
+button.Screen__Focus-List-Button {
+  border-bottom: 4px solid transparent;
+  outline: none;
+  min-width: 100px;
+  &.focused {
+    border-bottom: 4px solid $blue;
+  }
+}
+
+.Screen__Contents {
+  @include flex(column, center, flex-start);
+  height: 100%;
+  width: 100%;
+  background: red;
+  padding: 30px;
+  @include small {
+    background: black;
+  }
+  @include medium {
+    background: blue;
+  }
+  @include large {
+    background: green;
+  }
+  @include xLarge {
+    background: white;
+  }
+}
+
+.Navbar {
+  height: $navbar-height;
+  width: 100%;
+  background: white;
+  box-shadow: 0 2px 2px rgba(#000, 0.125);
+}
+
+.Navbar__Wrapper {
+  @include flex(row, center, space-between);
+  height: 100%;
+}
+.Navbar__Left {
+  @include flex(row, center, flex-start);
+}
+
+.Navbar__Brand {
+  margin-right: 1rem;
+  h1,
+  a {
+    color: $blue;
+    font-size: 20px;
+    letter-spacing: -0.2px;
+  }
+}
+
+.Navbar__Right {
+}
+
+.Navbar__Links {
+  @include flex(row, center, flex-start);
+}
+
+.Navbar__Link {
+  margin: 0 0.5rem;
+  padding: 0;
+  font-weight: 700;
+  color: $blue;
+  text-align: center;
+  min-width: 48px;
+  @include medium {
+    margin: 0 1rem;
+    padding: 0 0.5rem;
+  }
+  @include large {
+    margin: 0 1rem;
+    padding: 0 0.5rem;
+    min-width: 88px;
+  }
+  @include xLarge {
+    margin: 0 1rem;
+    padding: 0 0.5rem;
+    min-width: 88px;
+  }
+}
+
+.Navbar__Dropdown {
+  position: relative;
+  @include flex(row, center, center);
+  height: 70px;
+}
+
+button.Navbar__Dropdown-Toggler {
+  @include flex(row, center, center);
+  height: 50px;
+  position: relative;
+  //width: 50px;
+  line-height: 50px;
+  span {
+    margin: 0 0.5rem;
+  }
+  img {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+  }
+  span.hasNotification {
+    position: absolute;
+    top: 5px;
+    left: 60px;
+    height: 0;
+    width: 0;
+    border: 5px solid red;
+    border-radius: 100%;
+  }
+}
+
+.Navbar__Dropdown-Menu {
+  display: none;
+  position: absolute;
+  top: 70px;
+  right: 0;
+  background: white;
+  border: 1px solid #eee;
+  width: 320px;
+  box-shadow: 0 2px 2px rgba(#000, 0.125);
+}
+
+.Navbar__Dropdown-Menu.active {
+  display: block;
+}
+
+a.Navbar__Dropdown-Option,
+button.Navbar__Dropdown-Option {
+  display: block;
+  width: 100%;
+  line-height: 1.618;
+  padding: 0.5rem 1rem;
+  text-align: left;
+  height: auto;
+  color: #111;
+  a {
+    padding: 0;
+  }
+  &.has-separator {
+    border-bottom: 1px solid #eee;
+  }
+  &:hover {
+    background: $blue;
+    color: white;
+  }
+  &.Navbar__Dropdown-Option--Header {
+    @include flex(row, center, flex-start);
+    padding: 12px 15px;
+    img {
+      border-radius: 50%;
+      height: 60px;
+      width: 60px;
+    }
+    h5 {
+      font-size: 1rem;
+      color: #111;
+    }
+    p {
+      color: #999;
+      font-size: 12px;
+      text-transform: lowercase;
+    }
+    & > div:first-child {
+      margin-right: 1rem;
+    }
+    & > div:last-child {
+      border-left: 1px solid #ccc;
+      padding-left: 1rem;
+    }
+    &:hover {
+      background: white;
+    }
+  }
+  &.Navbar__Dropdown-Option--Info {
+    @include flex(row, center, space-between);
+    background: $background-light;
+    padding: 12px 15px;
+    color: #111;
+    div:last-child {
+      @include flex(row, center, center);
+    }
+    span {
+      display: inline-block;
+      height: 24px;
+      width: 24px;
+      font-size: 10px;
+      border-radius: 50%;
+      color: white;
+      background: $blue;
+      text-align: center;
+      line-height: 24px;
+      margin: 0 0.5rem 0 0;
+    }
+    svg {
+      transform: rotate(-90deg);
+    }
+    h5 {
+      font-size: 1rem;
+    }
+    p {
+      color: #999;
+      font-size: 12px;
+      text-transform: lowercase;
+    }
+    &:hover {
+      color: #111;
+    }
+  }
+}
